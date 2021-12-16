@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="RickAndMorthyApp.CharacterInfo">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame
+                BorderColor="DarkRed"
+                HasShadow="True"
+                HorizontalOptions="CenterAndExpand"
+                Padding="0">
+                <Image
+                    Source="{Binding Image}"
+                    Aspect="AspectFit"
+                    WidthRequest="200"
+                    HeightRequest="200"/>
+            </Frame>
+            <Frame
+                BackgroundColor="AliceBlue"
+                CornerRadius="8"
+                HasShadow="False"
+                BorderColor="Black"
+                Margin="10,10,10,10">
+                <StackLayout>
+                    <Grid Padding="10"
+                          ColumnSpacing="10"
+                          RowSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <!--Registro 1-->
+                        <Label
+                            Grid.Column="0"
+                            Grid.Row="0">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Name: " FontAttributes="Bold"></Span>
+                                    <Span Text="{Binding Name}"> </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label
+                            Grid.Column="1"
+                            Grid.Row="0">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Status: " FontAttributes="Bold"></Span>
+                                    <Span Text="{Binding Status}"> </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <!--Registro 2-->
+                        <Label
+                            Grid.Column="0"
+                            Grid.Row="1">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Type: " FontAttributes="Bold"></Span>
+                                    <Span Text="{Binding Type}"> </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label
+                            Grid.Column="1"
+                            Grid.Row="1">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Gender: " FontAttributes="Bold"></Span>
+                                    <Span Text="{Binding Gender}"> </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+                    <StackLayout Margin="10">
+                        <Label
+                            FontAttributes="Bold"
+                            Text="First seen in">
+                        </Label>
+                        <Label
+                            Grid.Column="0"
+                            Grid.Row="3"
+                            Text="{Binding Origin.Name}">
+                        </Label>
+                        <Label
+                            FontAttributes="Bold"
+                            Text="Last Location">
+                        </Label>
+                        <Label
+                            Grid.Column="0"
+                            Grid.Row="5"
+                            Text="{Binding Location.Name}">
+                        </Label>
+                        <Label Margin="0,20,0,0">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Character Identifier: " FontAttributes="Bold"></Span>
+                                    <Span Text="{Binding Id}"> </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Creation Date: " FontAttributes="Bold"></Span>
+                                    <Span Text="{Binding Created}"> </Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

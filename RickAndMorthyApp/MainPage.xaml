@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RickAndMorthyApp.Utilities"
+             x:Class="RickAndMorthyApp.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StringToColorConverter x:Key="stringToColor" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <Frame
+            BackgroundColor="Blue"
+            Padding="0"
+            CornerRadius="0">
+            <Label
+                Text="Rick and Morty Character List"
+                HorizontalTextAlignment="Center"
+                TextColor="White"
+                FontSize="30"/>
+        </Frame>
+        <StackLayout>
+            <Label Margin="0,10">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Page: " FontAttributes="Bold">
+                        </Span>
+                        <Span Text="{Binding CurrentPage}"> </Span>
+                        <Span Text=" / "> </Span>
+                        <Span Text="{Binding MaxPages}"> </Span>
+                        <Span Text=" Total Characters: " FontAttributes="Bold"> </Span>
+                        <Span Text="{Binding TotalCharacters}"> </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <CollectionView
+                x:Name="LstCharacters"
+                ItemsSource="{Binding CharacterList}"
+                RemainingItemsThreshold="{Binding ItemTreshold}"
+                RemainingItemsThresholdReachedCommand="{Binding ItemTresholdReachedCommand}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            HasShadow="True"
+                            BackgroundColor="AliceBlue">
+                            <StackLayout
+                                Orientation="Horizontal">
+                                <Image
+                                    Source="{Binding Image}"
+                                    Aspect="AspectFill"
+                                    HeightRequest="100"
+                                    WidthRequest="100" />
+                                <StackLayout
+                                    Orientation="Vertical">
+                                    <Label
+                                        Text="{Binding Name}"
+                                        FontAttributes="Bold"
+                                        FontSize="14">
+                                    </Label>
+                                    <Label
+                                        Text="{Binding Status}"
+                                        TextColor="{Binding Status, Converter={StaticResource stringToColor}}"
+                                        FontAttributes="Bold"
+                                        FontSize="12">
+                                    </Label>
+                                    <Label
+                                        FontSize="14"
+                                        FontAttributes="Bold"
+                                        Text="First seen in ">
+                                    </Label>
+                                    <Label
+                                        FontSize="12"
+                                        Grid.Column="0"
+                                        Grid.Row="3"
+                                        Text="{Binding Origin.Name}">
+                                    </Label>
+                                    <Label
+                                        FontSize="14"
+                                        FontAttributes="Bold"
+                                        Text="Last Location">
+                                    </Label>
+                                    <Label
+                                        FontSize="12"
+                                        Grid.Column="0"
+                                        Grid.Row="5"
+                                        Text="{Binding Location.Name}">
+                                    </Label>
+                                </StackLayout>
+                            </StackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Path=BindingContext.TapCharacterCommand, Source={x:Reference Name=LstCharacters}}"
+                                    NumberOfTapsRequired="1"
+                                    CommandParameter="{Binding .}">
+                                </TapGestureRecognizer>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
